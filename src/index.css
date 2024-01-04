@@ -17,9 +17,12 @@
   min-height: 100vh;
 }
 
-@layer compon {
+@layer components {
   .max-container {
     max-width: 1440px;
     margin: 0 auto;
+  }
+  .activeNav {
+    @apply text-red-600;
   }
 }
