@@ -28,3 +28,36 @@ export const sidebarCategories = [
     route: "health-beauty",
   },
 ];
+
+export const categories = [
+  {
+    title: "phones",
+    route: "/phones",
+    icon: "./image/icons/phone.png",
+  },
+  {
+    title: "computers",
+    route: "/computers",
+    icon: "./image/icons/computer.png",
+  },
+  {
+    title: "watches",
+    route: "/watch",
+    icon: "./image/icons/watch.png",
+  },
+  {
+    title: "camera",
+    route: "/camera",
+    icon: "./image/icons/camera.png",
+  },
+  {
+    title: "headphones",
+    route: "/headphones",
+    icon: "./image/icons/headphone.png",
+  },
+  {
+    title: "gaming",
+    route: "/gaming",
+    icon: "./image/icons/gaming.png",
+  },
+];
