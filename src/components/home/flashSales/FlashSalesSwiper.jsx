@@ -4,26 +4,14 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
+import { productSwiperBreakpoints } from "../../../constants/breakpoints";
 
 const FlashSalesSwiper = () => {
   return (
     <Swiper
       modules={[Navigation]}
       // slidesPerView={4}
-      breakpoints={{
-        640: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 40,
-        },
-        1250: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
-      }}
+      breakpoints={productSwiperBreakpoints}
     >
       {flashSalesProducts.map((product) => {
         return (
