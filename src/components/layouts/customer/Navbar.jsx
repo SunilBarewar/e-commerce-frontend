@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Divider from "../UI/Divider";
-import { navItems } from "../../constants/constants";
-import NavItem from "../UI/NavItem";
+import Divider from "@/components/UI/Divider";
+import { navItems } from "@/constants/constants";
+import NavItem from "@/components/UI/NavItem";
 
 const Navbar = () => {
   const [activeNav, setActiveNav] = useState("/");
