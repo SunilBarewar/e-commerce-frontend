@@ -1,5 +1,5 @@
 import { flashSalesProducts } from "@/constants/products";
-import ProductCard from "@/components/productCard/ProductCard";
+import ProductCard from "@/components/productCard";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";

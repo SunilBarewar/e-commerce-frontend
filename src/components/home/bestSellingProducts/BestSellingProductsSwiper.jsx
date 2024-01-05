@@ -1,5 +1,5 @@
 import { bestSellingProducts } from "@/constants/products";
-import ProductCard from "@/components/productCard/ProductCard";
+import ProductCard from "@/components/productCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
