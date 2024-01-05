@@ -6,12 +6,15 @@ import useCart from "@/hooks/useCart";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const handleAddtoCart = () => {
+    addToCart(product);
+  };
   return (
     <>
       <div className="w-full lg:w-[270px] rounded ">
         <div className="bg-white-2 relative flex justify-center items-center h-[250px]">
           <ProductThumbnail thumbnail={product.thumbnail} />
-          <AddToCartButton onClick={() => addToCart(product)} />
+          <AddToCartButton onClick={handleAddtoCart} />
         </div>
         <div className="pt-1">
           <ProductDesc product={product} />

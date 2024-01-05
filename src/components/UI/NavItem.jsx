@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const NavItem = ({ title, route, isActive, setActiveNav }) => {
+const NavItem = ({ title, route }) => {
+  const location = useLocation();
+
   return (
     <li
       className={`text-base p-1 ${
-        isActive ? "activeNav" : ""
+        location.pathname === route ? "activeNav" : ""
       } hover:text-gray-700`}
-      onClick={() => setActiveNav(route)}
     >
       <Link to={route}>{title}</Link>
     </li>
