@@ -12,7 +12,7 @@ const Navbar = () => {
     <>
       <nav className="flex  justify-between items-center py-5">
         <h1 className="text-2xl font-bold tracking-wide">Exclusive</h1>
-        <ul className="flex gap-5">
+        <ul className="hidden sm:flex gap-5">
           {navItems.map((item) => (
             <NavItem key={item.route} {...item} />
           ))}

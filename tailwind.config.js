@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         Inter: ["Inter", "sans-serif"],
       },
+      screens: {
+        xs: "480px",
+      },
       colors: {
         primary: "#db4444",
         "dark-1": "#000000",

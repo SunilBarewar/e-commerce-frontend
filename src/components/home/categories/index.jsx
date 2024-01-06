@@ -8,7 +8,7 @@ const Categories = () => {
   return (
     <SectionWrapper>
       <SectionHeading title={"Categories"} heading={"Browse By Categories"} />
-      <section className="flex flex-wrap gap-7">
+      <section className="grid  grid-cols-2 xs:grid-cols-3 md:grid-cols-5 lg:grid-flow-col lg:gap-x-5 gap-y-7">
         {categories.map((category) => {
           return <CategoryCard key={category.route} {...category} />;
         })}
