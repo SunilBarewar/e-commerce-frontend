@@ -3,17 +3,26 @@ import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import InputField from "./InputField";
 
-const SigninForm = () => {
+const SignupForm = () => {
+  const [name, nameAttr] = useInput("");
   const [email, emailAttr] = useInput("");
   const [password, passwordAttr] = useInput("");
 
-  const handleLogin = () => {
-    console.log("logged in ");
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log("Signed up ");
   };
   return (
     <form className="w-full justify-center flex-1 flex flex-col gap-8 mt-5">
       <InputField
+        label={"Name"}
+        placeholder="Enter your name"
+        type="text"
+        {...nameAttr}
+      />
+      <InputField
         label={"Email"}
+        type="email"
         placeholder="Enter your email"
         {...emailAttr}
       />
@@ -24,21 +33,16 @@ const SigninForm = () => {
         {...passwordAttr}
       />
 
-      <div className="flex justify-between items-center">
-        <Button title={"Sign in"} onClick={handleLogin} />
-        <Link to={"/auth/reset-password"} className="text-red-600">
-          Forget password?
-        </Link>
-      </div>
+      <Button title={"Sign up"} onClick={handleSignup} />
 
       <p>
-        New user?{" "}
-        <Link to={"/auth/signup"} className="text-primary">
-          Sign up
+        Already have an account?{" "}
+        <Link to={"/auth/signin"} className="text-primary">
+          Sign in
         </Link>
       </p>
     </form>
   );
 };
 
-export default SigninForm;
+export default SignupForm;

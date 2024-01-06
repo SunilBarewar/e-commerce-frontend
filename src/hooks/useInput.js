@@ -10,7 +10,7 @@ const useInput = (initValue) => {
     onChange: (e) => setValue(e.target.value),
   };
 
-  return [value, reset, attributeObj];
+  return [value, attributeObj, reset];
 };
 
 export default useInput;
