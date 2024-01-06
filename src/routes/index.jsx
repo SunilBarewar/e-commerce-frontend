@@ -20,7 +20,7 @@ export default function Router() {
       path: "/auth",
       element: <UserLayout />,
       children: [
-        { path: "signin", element: <SigninPage />, index: true },
+        { path: "signin", element: <SigninPage /> },
         { path: "signup", element: <SignupPage /> },
         { path: "reset-password", element: <ResetPasswordPage /> },
         { path: "new-password", element: <NewPasswordPage /> },
@@ -46,7 +46,7 @@ export default function Router() {
 
 //auth pages
 const SigninPage = Loadable(lazy(() => import("../pages/auth/Signin")));
-const SignupPage = Loadable(lazy(() => import("../pages/auth/Signin")));
+const SignupPage = Loadable(lazy(() => import("../pages/auth/Signup")));
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/auth/ResetPassword"))
 );
