@@ -5,9 +5,11 @@ import Navbar from "./Navbar";
 const Layout = () => {
   return (
     <>
-      <Navbar />
-      <div className="flex-grow">
-        <Outlet />
+      <div className="px-[10px] lg:px-[80px] font-Inter flex flex-col min-h-[100vh]">
+        <Navbar />
+        <div className="flex-grow">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </>
