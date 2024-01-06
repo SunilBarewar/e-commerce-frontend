@@ -3,7 +3,10 @@ import {
   FlashSales,
   Categories,
   BestSellingProducts,
-} from "@/components/home";
+  TrendingProduct,
+  FeaturedProducts,
+} from "../components/home";
+import Services from "../components/about/Services";
 
 const Home = () => {
   return (
@@ -12,6 +15,9 @@ const Home = () => {
       <FlashSales />
       <Categories />
       <BestSellingProducts />
+      <TrendingProduct />
+      <FeaturedProducts />
+      <Services />
     </>
   );
 };

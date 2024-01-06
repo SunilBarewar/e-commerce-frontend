@@ -7,7 +7,7 @@ const SectionHeading = ({ title, heading }) => {
         <span className="w-3 bg-primary mr-3 rounded"></span>
         {title}
       </div>
-      <div className="text-3xl font-semibold">{heading}</div>
+      <div className="text-2xl md:text-3xl font-semibold">{heading}</div>
     </div>
   );
 };
