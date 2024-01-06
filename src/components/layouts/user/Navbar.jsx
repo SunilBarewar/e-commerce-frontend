@@ -3,6 +3,7 @@ import { navItems } from "@/constants/constants";
 import NavItem from "@/components/UI/NavItem";
 import useCart from "@/hooks/useCart";
 import { Link } from "react-router-dom";
+import CratIcon from "@/assets/cart.png";
 
 const Navbar = () => {
   const { productCountInCart } = useCart();
@@ -15,6 +16,8 @@ const Navbar = () => {
           {navItems.map((item) => (
             <NavItem key={item.route} {...item} />
           ))}
+
+          <NavItem title={"Sign in"} route={"/auth/signin"} />
         </ul>
         <div className="flex items-center justify-center gap-3">
           {/* <span>
@@ -24,7 +27,9 @@ const Navbar = () => {
             <span className="absolute w-[20px] h-[20px] bg-red-500 text-white right-[-2px] top-[-8px] rounded-full  text-xs text-center grid place-content-center">
               {productCountInCart()}
             </span>
-            <img src="./image/cart.png" alt="" />
+            <div>
+              <img src={CratIcon} alt="cart-icon" />
+            </div>
           </Link>
         </div>
       </nav>
