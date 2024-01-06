@@ -2,8 +2,7 @@ import { Suspense, lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 
 // layouts
-import CustomerLayout from "@/components/layouts/customer";
-import AuthLayout from "@/components/layouts/auth";
+import UserLayout from "@/components/layouts/user";
 
 import LoadingScreen from "../components/LoadingScreen";
 
@@ -19,9 +18,9 @@ export default function Router() {
   return useRoutes([
     {
       path: "/auth",
-      element: <AuthLayout />,
+      element: <UserLayout />,
       children: [
-        { path: "signin", element: <SigninPage /> },
+        { path: "signin", element: <SigninPage />, index: true },
         { path: "signup", element: <SignupPage /> },
         { path: "reset-password", element: <ResetPasswordPage /> },
         { path: "new-password", element: <NewPasswordPage /> },
@@ -30,7 +29,7 @@ export default function Router() {
     },
     {
       path: "/",
-      element: <CustomerLayout />,
+      element: <UserLayout />,
       children: [
         { path: "/", element: <HomePage />, index: true },
         { path: "/about", element: <AboutPage /> },
