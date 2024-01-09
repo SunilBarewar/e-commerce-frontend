@@ -12,7 +12,7 @@ const useAuthApi = () => {
     });
   };
   const logout = async () => {
-    return await axios.post("/auth/login", "", {
+    return await axios.post("/auth/logout", "", {
       withCredentials: true,
     });
   };
