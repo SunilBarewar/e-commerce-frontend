@@ -32,6 +32,10 @@ export default function Router() {
               element: <RequireAuth />,
               children: [{ path: "/cart", element: <CartPage /> }],
             },
+            {
+              path: "/product/:id",
+              element: <ProductPage />,
+            },
             { path: "404", element: <Page404 /> },
 
             { path: "*", element: <Navigate to="/404" replace /> },
@@ -91,3 +95,5 @@ const AboutPage = Loadable(lazy(() => import("../pages/About")));
 const CartPage = Loadable(lazy(() => import("../pages/Cart")));
 const ContactPage = Loadable(lazy(() => import("../pages/Contact")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
+
+const ProductPage = Loadable(lazy(() => import("../pages/Product")));

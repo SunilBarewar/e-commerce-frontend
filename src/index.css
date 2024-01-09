@@ -44,3 +44,24 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #6e6e6e;
 }
+
+/* .imageSlider {
+  display: flex;
+  gap: 1rem;
+} */
+
+/* .swiper-pagination {
+  display: flex;
+  gap: 1rem;
+} */
+.imageSlider > .swiper-slide {
+  width: fit-content !important;
+}
+.imageSlider > .swiper-button-next {
+  color: red;
+  background-color: yellow;
+  padding: 10px;
+  font-size: 12px;
+  width: 15px;
+  border-radius: 50%;
+}
