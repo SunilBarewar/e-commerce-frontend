@@ -1,11 +1,14 @@
+import AuthProvider from "./context/AuthProvider";
 import CartProvider from "./context/CartProvider";
 import Router from "./routes";
 function App() {
   return (
     <>
-      <CartProvider>
-        <Router />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Router />
+        </CartProvider>
+      </AuthProvider>
     </>
   );
 }

@@ -5,7 +5,9 @@ import { Navigate, useRoutes } from "react-router-dom";
 import UserLayout from "@/components/layouts/user";
 
 import LoadingScreen from "../components/LoadingScreen";
-
+import RequireAuth from "../components/RequireAuth";
+import PersistLogin from "../components/PersistLogin";
+import NotRequireAuth from "../components/NotAuthorized";
 const Loadable = (Component) => (props) => {
   return (
     <Suspense fallback={<LoadingScreen />}>
@@ -17,26 +19,53 @@ const Loadable = (Component) => (props) => {
 export default function Router() {
   return useRoutes([
     {
-      path: "/auth",
-      element: <UserLayout />,
+      element: <PersistLogin />,
       children: [
-        { path: "signin", element: <SigninPage /> },
-        { path: "signup", element: <SignupPage /> },
-        { path: "reset-password", element: <ResetPasswordPage /> },
-        { path: "new-password", element: <NewPasswordPage /> },
-        { path: "verify", element: <VerifyPage /> },
-      ],
-    },
-    {
-      path: "/",
-      element: <UserLayout />,
-      children: [
-        { path: "/", element: <HomePage />, index: true },
-        { path: "/about", element: <AboutPage /> },
-        { path: "/contact", element: <ContactPage /> },
-        { path: "/cart", element: <CartPage /> },
-        { path: "404", element: <Page404 /> },
-        { path: "*", element: <Navigate to="/404" replace /> },
+        {
+          path: "/",
+          element: <UserLayout />,
+          children: [
+            { path: "/", element: <HomePage />, index: true },
+            { path: "/about", element: <AboutPage /> },
+            { path: "/contact", element: <ContactPage /> },
+            {
+              element: <RequireAuth />,
+              children: [{ path: "/cart", element: <CartPage /> }],
+            },
+            { path: "404", element: <Page404 /> },
+
+            { path: "*", element: <Navigate to="/404" replace /> },
+          ],
+        },
+        {
+          path: "/auth",
+          element: <UserLayout />,
+          children: [
+            {
+              element: <NotRequireAuth />,
+              children: [{ path: "signin", element: <SigninPage /> }],
+            },
+            {
+              element: <NotRequireAuth />,
+              children: [{ path: "signup", element: <SignupPage /> }],
+            },
+
+            {
+              element: <NotRequireAuth />,
+              children: [
+                { path: "reset-password", element: <ResetPasswordPage /> },
+              ],
+            },
+            {
+              element: <NotRequireAuth />,
+              children: [
+                { path: "new-password", element: <NewPasswordPage /> },
+              ],
+            },
+            { path: "verify", element: <VerifyPage /> },
+            { path: "*", element: <Navigate to="/404" replace /> },
+          ],
+        },
       ],
     },
 

@@ -4,10 +4,11 @@ import NavItem from "@/components/UI/NavItem";
 import useCart from "@/hooks/useCart";
 import { Link } from "react-router-dom";
 import CratIcon from "@/assets/cart.png";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const { productCountInCart } = useCart();
-
+  const { auth } = useAuth();
   return (
     <>
       <nav className="flex  justify-between items-center py-5">
@@ -17,7 +18,9 @@ const Navbar = () => {
             <NavItem key={item.route} {...item} />
           ))}
 
-          <NavItem title={"Sign in"} route={"/auth/signin"} />
+          {!auth?.accessToken ? (
+            <NavItem title={"Sign in"} route={"/auth/signin"} />
+          ) : null}
         </ul>
         <div className="flex items-center justify-center gap-3">
           {/* <span>
