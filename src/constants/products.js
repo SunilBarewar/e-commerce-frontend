@@ -181,7 +181,7 @@ export const bestSellingProducts = [
   },
 ];
 
-const productsAll = [
+export const productsAll = [
   {
     id: 1,
     title: "iPhone 9",

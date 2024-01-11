@@ -11,10 +11,9 @@ const ProductCard = ({ product }) => {
   };
   return (
     <>
-      <div className="w-full lg:w-[270px] rounded ">
+      <div className="w-full lg:w-[270px] rounded shadow p-2 relative">
         <div className="bg-white-2 relative flex justify-center items-center h-[250px]">
           <ProductThumbnail thumbnail={product.thumbnail} />
-          <AddToCartButton onClick={handleAddtoCart} />
         </div>
         <div className="pt-1">
           <ProductDesc product={product} />
@@ -27,6 +26,8 @@ const ProductCard = ({ product }) => {
             color2={"#ffd700"}
           />
         </div>
+
+        <AddToCartButton onClick={handleAddtoCart} />
       </div>
     </>
   );

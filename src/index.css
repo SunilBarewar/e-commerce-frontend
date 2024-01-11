@@ -65,3 +65,7 @@
   width: 15px;
   border-radius: 50%;
 }
+
+.swiper-wrapper {
+  padding-bottom: 1rem;
+}

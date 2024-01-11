@@ -1,14 +1,14 @@
 const AddToCartButton = ({ onClick }) => {
   return (
     <button
-      className="bg-white absolute top-2 right-3 p-2 rounded-full shadow-lg"
+      className="bg-green absolute bottom-2 right-5 p-2 rounded-full shadow-lg"
       title="add to cart"
       onClick={onClick}
     >
       <img
-        width="24"
-        height="24"
-        src="https://img.icons8.com/material-rounded/24/add-shopping-cart.png"
+        width="26"
+        height="26"
+        src="./image/cart_icon.png"
         alt="add-shopping-cart"
       />
     </button>

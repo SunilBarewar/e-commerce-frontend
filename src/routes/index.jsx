@@ -36,6 +36,8 @@ export default function Router() {
               path: "/product/:id",
               element: <ProductPage />,
             },
+            { path: "/products", element: <ProductListPage /> },
+
             { path: "404", element: <Page404 /> },
 
             { path: "*", element: <Navigate to="/404" replace /> },
@@ -97,3 +99,4 @@ const ContactPage = Loadable(lazy(() => import("../pages/Contact")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
 
 const ProductPage = Loadable(lazy(() => import("../pages/Product")));
+const ProductListPage = Loadable(lazy(() => import("../pages/ProductList")));
