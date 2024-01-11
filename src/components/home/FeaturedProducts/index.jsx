@@ -1,6 +1,7 @@
 import React from "react";
 import SectionWrapper from "../SectionWrapper";
 import SectionHeading from "../SectionHeading";
+import { Link } from "react-router-dom";
 
 const FeaturedProducts = () => {
   return (
@@ -15,20 +16,21 @@ const FeaturedProducts = () => {
   );
 };
 
-const Product = ({ name, desc, image, rowSpan, colSpan, descWidth }) => {
+const Product = ({ route, name, desc, image, rowSpan, colSpan, descWidth }) => {
   return (
-    <div className={`${rowSpan} ${colSpan} relative`}>
+    <Link to={route} className={`${rowSpan} ${colSpan} relative`}>
       <div className="absolute z-10 text-white bottom-10 left-5 flex flex-col gap-2">
         <h2 className="text-2xl">{name}</h2>
         <p className={`text-sm text-white-2 w-[${descWidth}]`}>{desc}</p>
         <button className="w-fit">shop now</button>
       </div>
       <img src={image} alt={name} />
-    </div>
+    </Link>
   );
 };
 const featuredProducts = [
   {
+    route: "/product/659fc11cdf4175ac89e846a8",
     name: "Play Station 5",
     desc: "Black and White version of the PS5 coming out on sale.",
     image: "./image/gallery/gallery-1.png",

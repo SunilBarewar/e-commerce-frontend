@@ -8,9 +8,9 @@ const FlashSales = () => {
     <SectionWrapper>
       <SectionHeading title={"Today's"} heading={"Flash sales"} />
       <FlashSalesSwiper />
-      <div className="flex justify-center mt-6">
+      {/* <div className="flex justify-center mt-6">
         <Button title={"view all products"} />
-      </div>
+      </div> */}
     </SectionWrapper>
   );
 };

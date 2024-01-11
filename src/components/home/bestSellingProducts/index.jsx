@@ -11,9 +11,9 @@ const BestSellingProducts = () => {
           title={"This month"}
           heading={"Best Selling Products"}
         />
-        <div className="mb-8 flex flex-shrink-0">
+        {/* <div className="mb-8 flex flex-shrink-0">
           <Button title={"View all"} />
-        </div>
+        </div> */}
       </div>
 
       <BestSellingProductsSwiper />
