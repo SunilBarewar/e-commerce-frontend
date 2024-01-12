@@ -3,6 +3,7 @@ import AddToCartButton from "./AddToCartButton";
 import ProductThumbnail from "./ProductThumbnail";
 import ProductDesc from "./ProductDesc";
 import useCart from "@/hooks/useCart";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -10,8 +11,8 @@ const ProductCard = ({ product }) => {
     addToCart(product);
   };
   return (
-    <>
-      <div className="w-full lg:w-[270px] rounded shadow p-2 relative">
+    <Link to={`/product/${product._id}`}>
+      <div className="w-[95%] xs:w-[90%] lg:w-[270px] rounded shadow p-2 relative overflow-hidden">
         <div className="bg-white-2 relative flex justify-center items-center h-[250px]">
           <ProductThumbnail thumbnail={product.thumbnail} />
         </div>
@@ -27,9 +28,9 @@ const ProductCard = ({ product }) => {
           />
         </div>
 
-        <AddToCartButton onClick={handleAddtoCart} />
+        {/* <AddToCartButton onClick={handleAddtoCart} /> */}
       </div>
-    </>
+    </Link>
   );
 };
 

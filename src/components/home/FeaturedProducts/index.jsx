@@ -47,6 +47,7 @@ const featuredProducts = [
     descWidth: "70%",
   },
   {
+    route: "/products?category=speakers",
     name: "Speakers",
     desc: "Amazon wireless speakers",
     image: "./image/gallery/gallery-3.png",
@@ -55,6 +56,7 @@ const featuredProducts = [
     descWidth: "100%",
   },
   {
+    route: "/products?category=perfumes",
     name: "Perfumes",
     desc: "GUCCI INTENSE OUD EDP",
     image: "./image/gallery/gallery-4.png",

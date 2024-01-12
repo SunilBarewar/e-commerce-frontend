@@ -6,12 +6,12 @@ import { Price, ProductName, RemoveButton, Subtotal } from "./CartItemUI";
 
 const CartItem = ({ item, index }) => {
   const disPrice = calculateDiscountedPrice(item);
-  const { removeProduct } = useCart();
 
   const [quantity, setQuantity] = useState(item.quantity);
-  const { updateQuantity } = useCart();
+  const { updateQuantity, removeProduct } = useCart();
 
   const handleClick = (val) => {
+    // console.log(val, index);
     setQuantity((prev) => prev + val);
     updateQuantity(val, index);
   };

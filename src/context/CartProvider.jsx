@@ -1,50 +1,67 @@
 import { createContext, useCallback, useState } from "react";
 import calculateDiscountedPrice from "../utils/calculateDiscountedPrice";
+import { useEffect } from "react";
 
 export const CartContext = createContext(null);
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const productCountInCart = () => cart.length;
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  const productCountInCart = () => cart?.length;
 
+  useEffect(() => {
+    console.log("updating cart in localstorage");
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const calculateTotalPrice = () => {
+    const total = cart?.reduce((acc, curr) => {
+      return acc + curr.total;
+    }, 0);
+    return total;
+  };
   const addToCart = useCallback((item) => {
+    const cartItem = {
+      _id: item._id,
+      title: item.title,
+      price: item.price,
+      quantity: 1,
+      total: calculateDiscountedPrice(item),
+      discountPercentage: item.discountPercentage,
+      discountedPrice: calculateDiscountedPrice(item),
+      thumbnail: item.thumbnail,
+    };
     setCart((prevCart) => {
-      let pIdx = prevCart.findIndex((p) => item.id === p.id);
+      let pIdx = prevCart.findIndex((p) => item._id === p._id);
       if (pIdx >= 0) return prevCart;
 
-      setTotalAmount(
-        (prevAmount) => prevAmount + calculateDiscountedPrice(item)
-      );
       // not exists
-      item.quantity = 1;
-      return [...prevCart, item];
+      return [...prevCart, cartItem];
     });
   }, []);
 
   const updateQuantity = useCallback((val, index) => {
-    setCart((prevCart) => {
-      if(prevCart.quantity === 1){
-        return prevCart.filter((p, i) => i !== index);
+    setCart((oldCart) => {
+      if (oldCart[index].quantity + val === 0) {
+        return oldCart.filter((_, i) => i !== index);
       }
-      let updatedQnt = prevCart[index].quantity + val;
-      prevCart[index].quantity = updatedQnt;
-      setTotalAmount(
-        (prevAmount) =>
-          prevAmount + val * calculateDiscountedPrice(prevCart[index])
-      );
-      return prevCart;
+
+      const updatedCart = oldCart.map((item, i) => {
+        let qt = item.quantity;
+        let total = item.total + val * item.discountedPrice;
+        if (i === index) {
+          return { ...item, quantity: qt + val, total };
+        }
+        return { ...item };
+      });
+      return updatedCart;
     });
   }, []);
 
   const removeProduct = useCallback((item) => {
     setCart((prevCart) => {
-      let updatedCart = prevCart.filter((p) => p.id !== item.id);
-
-      setTotalAmount(
-        (prevAmount) =>
-          prevAmount - item.quantity * calculateDiscountedPrice(item)
-      );
+      let updatedCart = prevCart.filter((p) => p._id !== item._id);
       return updatedCart;
     });
   }, []);
@@ -57,7 +74,7 @@ const CartProvider = ({ children }) => {
         productCountInCart,
         updateQuantity,
         removeProduct,
-        totalAmount,
+        calculateTotalPrice,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ const CartItemList = () => {
     <div className="flex flex-col gap-2">
       <Columns />
       {cart?.map((item, i) => {
-        return <CartItem key={item.id} item={item} index={i} />;
+        return <CartItem key={item._id} item={item} index={i} />;
       })}
     </div>
   );
