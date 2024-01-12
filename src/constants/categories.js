@@ -36,8 +36,8 @@ export const categories = [
     icon: "./image/icons/phone.png",
   },
   {
-    title: "computers",
-    route: "/computers",
+    title: "laptops",
+    route: "/laptops",
     icon: "./image/icons/computer.png",
   },
   {

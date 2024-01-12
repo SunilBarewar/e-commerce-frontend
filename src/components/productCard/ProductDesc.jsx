@@ -2,8 +2,8 @@ import calculateDiscountedPrice from "@/utils/calculateDiscountedPrice";
 
 const ProductDesc = ({ product }) => {
   return (
-    <>
-      <h3>{product.title}</h3>
+    <div className="overflow-hidden">
+      <p className="truncate overflow-hidden">{product.title.substr(0, 30)}</p>
       <div className="flex gap-3">
         <span className="text-primary ">
           ${calculateDiscountedPrice(product)}
@@ -12,7 +12,7 @@ const ProductDesc = ({ product }) => {
           ${product.price}
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

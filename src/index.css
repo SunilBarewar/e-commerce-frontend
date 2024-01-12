@@ -57,6 +57,11 @@
 .imageSlider > .swiper-slide {
   width: fit-content !important;
 }
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .imageSlider > .swiper-button-next {
   color: red;
   background-color: yellow;
