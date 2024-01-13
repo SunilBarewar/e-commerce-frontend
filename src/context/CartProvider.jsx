@@ -11,7 +11,6 @@ const CartProvider = ({ children }) => {
   const productCountInCart = () => cart?.length;
 
   useEffect(() => {
-    console.log("updating cart in localstorage");
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
@@ -32,6 +31,7 @@ const CartProvider = ({ children }) => {
       discountedPrice: calculateDiscountedPrice(item),
       thumbnail: item.thumbnail,
     };
+
     setCart((prevCart) => {
       let pIdx = prevCart.findIndex((p) => item._id === p._id);
       if (pIdx >= 0) return prevCart;
@@ -70,6 +70,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        setCart,
         addToCart,
         productCountInCart,
         updateQuantity,

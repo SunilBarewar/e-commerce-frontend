@@ -4,18 +4,17 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
-import useCart from "../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import useOrdersApi from "../../hooks/api/useOrdersApi";
-const stripePromise = loadStripe(import.meta.env.STRIPE_PUBLIC_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const { cart } = useCart();
-
   const [clientSecret, setClientSecret] = useState("");
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const {
+    state: { products, from },
+  } = useLocation();
   const { createCheckoutSession } = useOrdersApi();
   // payment integration
   const cancelPayment = async (e) => {
@@ -24,16 +23,17 @@ const CheckoutForm = () => {
   };
 
   useEffect(() => {
-    console.log(state);
+    console.log(products);
     (async () => {
-      if (!state || !cart || !cart.length) {
+      if (!products || !products.length) {
         navigate("/");
         return;
       }
 
       try {
         const body = {
-          products: cart,
+          products,
+          from
         };
         const response = await createCheckoutSession(body);
 
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
   }, []);
 
   return (
-    <div className="w-full h-[100%]">
+    <>
       {clientSecret ? (
         <>
           <EmbeddedCheckoutProvider
@@ -66,11 +66,11 @@ const CheckoutForm = () => {
           </div>
         </>
       ) : (
-        <div className="flex h-full items-center justify-center">
+        <div className="flex min-h-screen items-center justify-center">
           <ClipLoader size={110} color="#f1150a" />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

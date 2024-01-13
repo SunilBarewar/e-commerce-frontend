@@ -6,6 +6,7 @@ const ItemQuantity = ({ onClick, quantity }) => {
       <button
         className="px-1 text-[30px] text-bold"
         onClick={() => onClick(-1)}
+        disabled={quantity === 1}
       >
         -
       </button>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../components/UI/Button";
 import { BeatLoader } from "react-spinners";
@@ -8,9 +8,10 @@ const PaymentStatus = () => {
   const [searchParams] = useSearchParams();
   const { getSessionStatus, placeOrder } = useOrdersApi();
   const [orderPlaced, setOrderPlaced] = useState(false);
-  //   console.log(searchParams.get("session_id"));
+
   const { cart, setCart } = useCart();
   const navigate = useNavigate();
+
   useEffect(() => {
     (async () => {
       const session_id = searchParams.get("session_id");
@@ -35,9 +36,10 @@ const PaymentStatus = () => {
           };
 
           await placeOrder(orderObj);
-
-          localStorage.removeItem("cart");
-          setCart([]);
+          if (searchParams.get("from") === "cart") {
+            localStorage.removeItem("cart");
+            setCart([]);
+          }
         }
       } catch (error) {
         console.log(error);

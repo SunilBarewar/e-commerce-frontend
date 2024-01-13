@@ -17,7 +17,7 @@ const Cart = () => {
   const makePayment = async (e) => {
     e.preventDefault();
     setLoadingCheckoutForm(true);
-    navigate("/payment", { replace: true, state: "123456789" });
+    navigate("/payment", { state: { products: cart, from: "cart" } });
   };
 
   return (

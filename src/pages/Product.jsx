@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css/navigation";
@@ -46,7 +46,7 @@ const ProductImagesSwiper = ({ productImages }) => {
       <Swiper modules={[Navigation]} className="imageSlider">
         {productImages?.map((imageUrl) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={imageUrl}>
               <ProductSliderImage key={imageUrl} imageUrl={imageUrl} />
             </SwiperSlide>
           );
@@ -106,11 +106,35 @@ const ProductSliderImage = ({ imageUrl }) => {
   );
 };
 const ProductInfo = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
   const handleAddtoCart = () => {
-    console.log("adding to cart");
     addToCart(product);
   };
+  const [qnt, setQnt] = useState(1);
+  const navigate = useNavigate();
+  const handleBuyNow = () => {
+    const item = {
+      _id: product._id,
+      title: product.title,
+      price: product.price,
+      quantity: qnt,
+      total: calculateDiscountedPrice(product),
+      discountPercentage: product.discountPercentage,
+      discountedPrice: calculateDiscountedPrice(product),
+      thumbnail: product.thumbnail,
+    };
+    navigate("/payment", { state: { products: [item], from: "product" } });
+  };
+  const changeQuantity = (val) => {
+    setQnt((prev) => prev + val);
+  };
+  const isProductInCart = cart?.some((p) => {
+    return p._id === product._id;
+  });
+  const handleGotoCart = () => {
+    navigate("/cart");
+  };
+  console.log(isProductInCart);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3">
@@ -134,38 +158,42 @@ const ProductInfo = ({ product }) => {
       </div>
       <div className="flex flex-col gap-5">
         <h2 className=" text-xl">Description</h2>
-        {/* <ul className="flex flex-col gap-3">
-          {product?.description?.split(".").map((str) => {
-            return <li key={Math.random()}>&#9733; {str}</li>;
-          })}
-        </ul> */}
         <p>{product.description}</p>
       </div>
 
       <div className="flex gap-5  flex-wrap">
         <div className="w-[140px]">
-          <ItemQuantity quantity={1} onClick={() => {}} />
+          <ItemQuantity quantity={qnt} onClick={changeQuantity} />
         </div>
-        <Button title={"Buy Now"} />
-        <AddToCartButton onClick={handleAddtoCart} />
+        <Button title={"Buy Now"} onClick={handleBuyNow} />
+        {isProductInCart && (
+          <PButton onClick={handleGotoCart} title={"already in your cart"}>
+            Go to Cart
+          </PButton>
+        )}
+        {!isProductInCart && (
+          <PButton onClick={handleAddtoCart} title={"add to cart"}>
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/material-rounded/24/add-shopping-cart.png"
+              alt="add-shopping-cart"
+            />
+          </PButton>
+        )}
       </div>
     </div>
   );
 };
 
-const AddToCartButton = ({ onClick }) => {
+const PButton = ({ children, onClick, title }) => {
   return (
     <button
-      className="top-2 right-3 py-2 px-4 rounded grid place-content-center bg-green shadow-lg"
-      title="add to cart"
+      className="py-2 px-4 rounded grid place-content-center bg-green shadow-lg text-white"
+      title={title}
       onClick={onClick}
     >
-      <img
-        width="24"
-        height="24"
-        src="https://img.icons8.com/material-rounded/24/add-shopping-cart.png"
-        alt="add-shopping-cart"
-      />
+      {children}
     </button>
   );
 };
