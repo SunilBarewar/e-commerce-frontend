@@ -37,7 +37,16 @@ export default function Router() {
               element: <ProductPage />,
             },
             { path: "/products", element: <ProductListPage /> },
-
+            {
+              element: <RequireAuth />,
+              children: [{ path: "/payment", element: <PaymentPage /> }],
+            },
+            {
+              element: <RequireAuth />,
+              children: [
+                { path: "/payment-status", element: <PaymentStatusPage /> },
+              ],
+            },
             { path: "404", element: <Page404 /> },
 
             { path: "*", element: <Navigate to="/404" replace /> },
@@ -100,3 +109,11 @@ const Page404 = Loadable(lazy(() => import("../pages/Page404")));
 
 const ProductPage = Loadable(lazy(() => import("../pages/Product")));
 const ProductListPage = Loadable(lazy(() => import("../pages/ProductList")));
+
+//payment  pages
+const PaymentPage = Loadable(
+  lazy(() => import("../pages/payment/CheckoutForm"))
+);
+const PaymentStatusPage = Loadable(
+  lazy(() => import("../pages/payment/PaymentStatus"))
+);
