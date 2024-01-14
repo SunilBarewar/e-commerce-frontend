@@ -10,8 +10,8 @@ const Navbar = () => {
   const { productCountInCart } = useCart();
   const { auth } = useAuth();
   return (
-    <>
-      <nav className="flex  justify-between items-center py-5">
+    <div className="sticky top-0 w-full z-50">
+      <nav className="flex justify-between items-center py-5 bg-white ">
         <Link to={"/"} className="text-2xl font-bold tracking-wide">
           Exclusive
         </Link>
@@ -39,7 +39,7 @@ const Navbar = () => {
         </div>
       </nav>
       <Divider />
-    </>
+    </div>
   );
 };
 
