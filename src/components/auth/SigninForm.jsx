@@ -37,6 +37,7 @@ const SigninForm = () => {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status < 500) {
+        console.log(err)
         setErrMsg("email or password may be wrong");
       } else {
         setErrMsg("Failed to login");

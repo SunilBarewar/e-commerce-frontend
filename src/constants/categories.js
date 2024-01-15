@@ -1,31 +1,94 @@
+/**
+ * "tops",
+"womens-dresses",
+"womens-shoes",
+"mens-shirts",
+"mens-shoes",
+"mens-watches",
+"womens-watches",
+"womens-bags",
+"womens-jewellery"
+ */
+
 export const sidebarCategories = [
   {
     title: "Woman's Fashion",
-    route: "/woman-fashion",
+    submenu: true,
+    sublinks: [
+      {
+        title: "watches",
+        route: "womens-watches",
+      },
+      {
+        title: "jewellery",
+        route: "womens-jewellery",
+      },
+      {
+        title: "bags",
+        route: "womens-bags",
+      },
+      {
+        title: "shoes",
+        route: "womens-shoes",
+      },
+      {
+        title: "tops",
+        route: "tops",
+      },
+      {
+        title: "dresses",
+        route: "womens-dresses",
+      },
+    ],
   },
   {
     title: "Men's Fashion",
-    route: "/men-fashion",
+    submenu: true,
+    sublinks: [
+      {
+        title: "shirts",
+        route: "mens-shirts",
+      },
+      {
+        title: "shoes",
+        route: "mens-shoes",
+      },
+      {
+        title: "watches",
+        route: "mens-watches",
+      },
+    ],
   },
   {
     title: "Electronics",
-    route: "/electronics",
+    // route: "/electronics",
+    submenu: true,
+    sublinks: [
+      {
+        title: "laptops",
+        route: "laptops",
+      },
+      {
+        title: "smartphones",
+        route: "phones",
+      },
+    ],
   },
   {
-    title: "Home & lifestyle",
-    route: "/home-lifestyle",
+    title: "Furniture",
+    route: "furniture",
   },
   {
-    title: "Sports",
-    route: "/sports",
+    title: "Home-decoration",
+    route: "home-decoration",
   },
   {
     title: "Groceries",
-    route: "/groceries",
+    route: "groceries",
   },
   {
     title: "Health & Beauty",
-    route: "health-beauty",
+    route: "skincare",
   },
 ];
 

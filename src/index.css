@@ -15,9 +15,22 @@
   margin: 0 auto;
   width: 100%;
   min-height: 100vh;
+  overflow: hidden;
 }
 .swiper {
   position: unset !important;
+}
+body {
+  position: relative;
+}
+#mobile-nav {
+  z-index: 1000;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
 }
 @layer components {
   .max-container {
