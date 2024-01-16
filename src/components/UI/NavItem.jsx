@@ -7,7 +7,7 @@ const NavItem = ({ title, route }) => {
     <li
       className={`text-base p-1 ${
         location.pathname === route ? "activeNav" : ""
-      } hover:text-gray-700`}
+      } hover:text-gray-700 list-none`}
     >
       <Link to={route}>{title}</Link>
     </li>
