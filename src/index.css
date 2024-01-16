@@ -32,6 +32,29 @@ body {
   overflow: hidden;
   background-color: white;
 }
+
+.fade-in {
+  animation-duration: 1s;
+  animation-name: fadein;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  50% {
+    opacity: 0.5;
+    visibility: visible;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @layer components {
   .max-container {
     max-width: 1440px;
