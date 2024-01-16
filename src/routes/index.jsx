@@ -19,24 +19,29 @@ const Loadable = (Component) => (props) => {
 export default function Router() {
   return useRoutes([
     {
+      path: "/",
+      element: <UserLayout />,
+      children: [
+        { path: "/", element: <HomePage />, index: true },
+        { path: "/about", element: <AboutPage /> },
+        { path: "/contact", element: <ContactPage /> },
+        {
+          path: "/product/:id",
+          element: <ProductPage />,
+        },
+        { path: "/products", element: <ProductListPage /> },
+      ],
+    },
+    {
       element: <PersistLogin />,
       children: [
         {
-          path: "/",
           element: <UserLayout />,
           children: [
-            { path: "/", element: <HomePage />, index: true },
-            { path: "/about", element: <AboutPage /> },
-            { path: "/contact", element: <ContactPage /> },
             {
               element: <RequireAuth />,
               children: [{ path: "/cart", element: <CartPage /> }],
             },
-            {
-              path: "/product/:id",
-              element: <ProductPage />,
-            },
-            { path: "/products", element: <ProductListPage /> },
             {
               element: <RequireAuth />,
               children: [{ path: "/payment", element: <PaymentPage /> }],
@@ -84,7 +89,7 @@ export default function Router() {
       ],
     },
 
-    { path: "*", element: <Navigate to="/404" replace /> },
+    { path: "*", element: <Navigate to="/404" /> },
   ]);
 }
 

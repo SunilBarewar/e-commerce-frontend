@@ -11,6 +11,7 @@ const ProductList = () => {
 
   //  let url = `?page=${page}&sort=${sortby.option}&order=${sortby.order}&category=${categories.toString()}&search=${searchQuery}`
   useEffect(() => {
+    window?.scrollTo({ top: 0, behavior: "smooth" });
     let query = `?`;
     if (searchParams.get("category")) {
       query += `category=${searchParams.get("category")}`;
